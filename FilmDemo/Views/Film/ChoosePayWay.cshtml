@@ -1,0 +1,65 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>收银台</title>
+    <link rel="dns-prefetch" href="//p0.meituan.net" />
+    <link rel="dns-prefetch" href="//p1.meituan.net" />
+    <link rel="dns-prefetch" href="//s0.meituan.net" />
+    <link rel="dns-prefetch" href="//s1.meituan.net" />
+    <link rel="dns-prefetch" href="//www.dpfile.com" />
+    <link rel="dns-prefetch" href="//analytics.meituan.net" />
+    <link rel="dns-prefetch" href="//wreport.meituan.net" />
+    <link rel="dns-prefetch" href="//report.meituan.net" />
+    <meta name="renderer" content="webkit">
+    <meta name="applicable-device" content="pc">
+    <meta name="lx:category" content="pay">
+    <meta name="lx:appnm" content="group">
+    <meta name="lx:autopv" content="off" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=0">
+    <script>!function(){function e(e){var n=new RegExp("(^| )"+e+"=([^;]*)(;|$)"),c=document.cookie.match(n);return c?decodeURIComponent(c[2]):null}function n(e){switch(e){case"dptuangou":case"dpnova":return"//www.dpfile.com/s/res/favicon.5ff777c11d7833e57e01c9d192b7e427.ico";case"mtgroup":default:return"./img/mtgroup.2zozb2.ico"}}var c=e("website"),t=document.createElement("link");t.type="image/x-icon",t.rel="shortcut icon",t.href=n(c),document.getElementsByTagName("head")[0].appendChild(t)}();</script>
+    <script>"use strict";!function(){var i=arguments.length>0&&void 0!==arguments[0]?arguments[0]:"_Owl_",t=window;t[i]||(t[i]={isRunning:!1,isReady:!1,preTasks:[],dataSet:[],use:function(i,n){this.isReady&&t.Owl&&t.Owl[i](n),this.preTasks.push({api:i,data:[n]})},add:function(i){this.dataSet.push(i)},run:function(){var i=this;if(!this.isRunning){this.isRunning=!0;var n=t.onerror;t.onerror=function(){this.isReady||this.add({type:"jsError",data:arguments}),n&&n.apply(t,arguments)}.bind(this);(t.addEventListener||t.attachEvent)("error",function(t){i.isReady||i.add({type:"resError",data:[t]})},!0)}}},t[i].run())}();</script>
+    <script>
+    !(function (win, doc, ns) {
+        var cacheFunName = '_MeiTuanALogObject';
+        win[cacheFunName] = ns;
+        if (!win[ns]) {
+            var _LX = function () {
+                _LX.q.push(arguments);
+                return _LX;
+            };
+            _LX.q = _LX.q || [];
+            _LX.l = +new Date();
+            win[ns] = _LX;
+        }
+    })(window, document, 'LXAnalytics');
+    </script>
+</head>
+<body>
+    <div id="app">
+        <div id="header"></div>
+        <div id="body" class="container clear-fix"></div>
+        <div id="footer"></div>
+    </div>
+    <div id="modal"></div>
+    <script crossorigin="anonymous" src="//www.dpfile.com/app/owl/static/owl_1.5.28.js"></script>
+    <!--[if lte IE 8]>
+        <script src="./js/lib/ie8-shim.min.3llwhr.js"></script>
+    <![endif]-->
+    <!--[if lte IE 7]>
+        <script src="./js/lib/ie6-shim.min.AWwQE.js"></script>
+    <![endif]-->
+    <script src="~/Scripts/Pay2.js"></script>
+    <!--[if lte IE 9]>
+        <script src="./js/lib/ie9-shim.min.2CKSCH.js"></script>
+    <![endif]-->
+    <script src="~/Scripts/Pay.js" type="text/javascript" charset="utf-8" async></script>
+</body>
+</html>
