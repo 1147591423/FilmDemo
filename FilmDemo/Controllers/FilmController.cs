@@ -38,7 +38,7 @@ namespace FilmDemo.Controllers
             return View();
         }
         public ActionResult GetSitAndGetTicket()
-        {
+        { 
             return View();
         }
         public ActionResult GetSit()
