@@ -1,21 +1,158 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Net;
+using System.Net.Http;
+using System.Text;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using Newtonsoft.Json;
+using FilmDemo.Models;
+using System.Diagnostics;
+using System.Net.Security;
+using System.Security.Cryptography.X509Certificates;
 
 namespace FilmDemo.Controllers
 {
     public class FilmController : Controller
     {
         // GET: Film
+        public string GetApiResult(string Request, string ActionName, object obj = null)
+        {
+            string json = "";
+            HttpClient hc = new HttpClient();
+            hc.BaseAddress = new Uri("http://localhost:21916/api/LoginAndFirstPage/");
+            Task <HttpResponseMessage> task = null;
+            switch (Request)
+            {
+                case "get":
+                    task = hc.GetAsync(ActionName);
+                    break;
+                case "post":
+                    task = hc.PostAsJsonAsync(ActionName, obj);
+                    break;
+                case "put":
+                    task = hc.PutAsJsonAsync(ActionName, obj);
+                    break;
+                case "delete":
+                    task = hc.DeleteAsync(ActionName);
+                    break;
+            }
+            task.Wait();
+            var result = task.Result;
+            if (result.IsSuccessStatusCode)
+            {
+                var GetResultTask = result.Content.ReadAsStringAsync();
+                GetResultTask.Wait();
+                json = GetResultTask.Result;
+            }
+            return json;
+        }
+        private const String host = "http://dingxin.market.alicloudapi.com";
+        private const String path = "/dx/sendSms";
+        private const String method = "POST";
+        private const String appcode = "e3322da1be4944b8b8a8a73271d6c69c";
+        public void MessageTest(string PhoneNum)
+        {
+            Random rad = new Random();
+            int value = rad.Next(1000, 10000);
+            Session["value"] = value;
+            String querys = "mobile="+ PhoneNum + "&param=code:"+ value + "&tpl_id=TP1711063";
+            String bodys = "";
+            String url = host + path;
+            HttpWebRequest httpRequest = null;
+            HttpWebResponse httpResponse = null;
+
+            if (0 < querys.Length)
+            {
+                url = url + "?" + querys;
+            }
+
+            if (host.Contains("https://"))
+            {
+                ServicePointManager.ServerCertificateValidationCallback = new RemoteCertificateValidationCallback(CheckValidationResult);
+                httpRequest = (HttpWebRequest)WebRequest.CreateDefault(new Uri(url));
+            }
+            else
+            {
+                httpRequest = (HttpWebRequest)WebRequest.Create(url);
+            }
+            httpRequest.Method = method;
+            httpRequest.Headers.Add("Authorization", "APPCODE " + appcode);
+            if (0 < bodys.Length)
+            {
+                byte[] data = Encoding.UTF8.GetBytes(bodys);
+                using (Stream stream = httpRequest.GetRequestStream())
+                {
+                    stream.Write(data, 0, data.Length);
+                }
+            }
+            try
+            {
+                httpResponse = (HttpWebResponse)httpRequest.GetResponse();
+            }
+            catch (WebException ex)
+            {
+                httpResponse = (HttpWebResponse)ex.Response;
+            }
+        }
+
+        public static bool CheckValidationResult(object sender, X509Certificate certificate, X509Chain chain, SslPolicyErrors errors)
+        {
+            return true;
+        }
+
         public ActionResult Index()
         {
             return View();
         }
+        public void UserLogin(string PhoneNum,string Password)
+        {
+            try
+            {
+                var result = GetApiResult("get", "UserLogin?Num="+PhoneNum+"&Password="+Password);
+                if (result!=null)
+                {
+                    Response.Write("<script>alert('登陆成功！')</script>");
+                }
+                else
+                {
+                    Response.Write("<script>alert('登陆失败！')</script>");
+                }
+            }
+            catch 
+            {
+                Response.Write("<script>alert('登陆失败！')</script>");
+            }
+            
+        }
+        public void RegisterUser(UserInfo ui)
+        {
+            try
+            {
+                var result = GetApiResult("post", "RegisterUser",ui);
+                if (int.Parse(result) >0)
+                {
+                    Response.Write("<script>alert('注册成功！')</script>");
+                }
+                else
+                {
+                    Response.Write("<script>alert('注册成功！')</script>");
+                }
+            }
+            catch 
+            {
+                Response.Write("<script>alert('注册成功！')</script>");
+            }
+            
+        }
         public ActionResult FistPage()
         {
-            return View();
+            var result = GetApiResult("get", "GetFilm");
+            List<FilmInfo> list = JsonConvert.DeserializeObject<List<FilmInfo>>(result);
+            return View(list);
         }
         public ActionResult FilmPage()
         {
