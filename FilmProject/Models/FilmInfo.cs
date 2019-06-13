@@ -17,6 +17,6 @@ namespace FilmDemo.Models
         public int WantSee { get; set; }
         public float Grade { get; set; }
         public string FilmIntroduced { get; set; }
-        public string FilmPhoto { get; set; }
+        public string FilmPhotos { get; set; }
     }
 }

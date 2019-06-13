@@ -2,6 +2,7 @@
 @{
     Layout = null;
 }
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,92 +15,75 @@
     <link href="~/1_flat-login-form-3-0/css/style.css" rel="stylesheet" />
 </head>
 <body>
-    <p hidden id="code">@Session["value"]</p>
+
+    <!-- Form Mixin-->
+    <!-- Input Mixin-->
+    <!-- Button Mixin-->
+    <!-- Pen Title-->
     <div class="pen-title">
-        <h1>Flat Login Form</h1>
+        <h1>忘记密码</h1>
     </div>
     <!-- Form Module-->
+    <button id="Code"value="3366" hidden></button>
     <div class="module form-module">
         <div class="toggle">
             <i class="fa fa-times fa-pencil"></i>
-            <div class="tooltip">注册点我</div>
-        </div>
-
-        <div class="form">
-            <h2>请登陆</h2>
-            @using (Ajax.BeginForm("UserLogin", new AjaxOptions { }))
-            {
-                <input name="PhoneNum" type="text" placeholder="手机号" />
-                <input name="Password" type="password" placeholder="密码" />
-                <button type="submit">登陆</button>
-            }
         </div>
         <div class="form">
-            <h2>请注册</h2>
-            @using (Ajax.BeginForm("RegisterUser", new AjaxOptions { }))
-            {
-                <input id="Moble" name="PhoneNum" type="text" placeholder="手机号" />
-                <input id="getCode" type="button" class="btn btn-block" value="获取验证码" onclick="GetGodeMassage()" />
-                <input id="num" type="text" placeholder="短信动态码" />
-                <input id="pwd" name="Password" type="password" placeholder="密码" />
-                <input id="confirmPwd" type="password" placeholder="确认密码" />
-                <button type="submit" onclick="Judge()">注册</button>
-            }
+            <h2>忘记密码</h2>
+            <input id="Moble" name="PhoneNum" type="text" placeholder="手机号" />
+            <input id="getCode" type="button" class="btn btn-block" value="获取验证码" onclick="GetGodeMassage()" />
+            <input id="num" type="text" placeholder="短信动态码" />
+            <button type="submit" onclick="GoEdit()">提交</button>
         </div>
-        <div class="cta"><a href="">忘记密码</a></div>
     </div>
     <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
     <script src='https://codepen.io/andytran/pen/vLmRVp.js'></script>
     <script src="~/1_flat-login-form-3-0/js/index.js"></script>
+
+
 </body>
 </html>
 <script>
-    function Judge() {
+    function GoEdit() {
         var phone = document.getElementById('Moble').value;
-        var pwd = document.getElementById('pwd').value;
-        var confirmPwd = document.getElementById('pwd').value;
-        var code = document.getElementById('code').value;
-        var confirmCode = document.getElementById('num').value;
-        if (phone == "") {
+        var code = document.getElementById('num').value;
+        var getCode = document.getElementById('Code').value;
+        if (phone.length<0) {
             alert("请先填写手机号！");
-            return false;
-        }
-        if (pwd == "") {
-            alert("请先填写密码！");
-            return false;
-        }
-        if (confirmCode=="") {
-            alert("请先填写确认密码密码！");
             return false;
         }
         if (!(/^1[3456789]\d{9}$/.test(phone))) {
             alert("手机号码有误，请重填");
             return false;
-        } 
-        if (confirmPwd != pwd) {
-            alert("确认密码不正确，请重新输入！");
+        }
+        if (code.length<0) {
+            alert("请先确认验证码！");
             return false;
         }
-        if (confirmCode != code) {
-            alert("请确认验证码！");
+        if (code != getCode) {
+            alert("请先确认验证码！");
             return false;
         }
+        else {
+            location.href = "/Film/EditPwd?PhoneNum=" + phone;
+        }
+        
     }
-    
     function GetGodeMassage() {
         var phone = document.getElementById('Moble').value;
-        if (phone == "") {
+        if (phone.length<0) {
             alert("请先填写手机号！");
             return false;
         }
         if (!(/^1[3456789]\d{9}$/.test(phone))) {
             alert("手机号码有误，请重填");
             return false;
-        } 
+        }
         var wait = 30;
         function time(obj) {
             if (wait == 0) {
-                obj.className = 'btnCode';
+                obj.className = 'getCode';
                 obj.removeAttribute("disabled");
                 obj.value = "";
                 wait = 30;

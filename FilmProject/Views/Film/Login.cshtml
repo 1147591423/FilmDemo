@@ -1,0 +1,145 @@
+﻿
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Flat Login Form 3.0</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+    <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700,900|RobotoDraft:400,100,300,500,700,900'>
+    <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css'>
+    <link href="~/1_flat-login-form-3-0/css/style.css" rel="stylesheet" />
+</head>
+<body>
+    <button id="code" value="3322" hidden></button>
+    <div class="pen-title">
+        <h1>水墨电影</h1>
+    </div>
+    <!-- Form Module-->
+    <div class="module form-module">
+        <div class="toggle">
+            <i class="fa fa-times fa-pencil"></i>
+            <div class="tooltip">注册点我</div>
+        </div>
+
+        <div class="form">
+            <h2>请登陆</h2>
+            @using (Ajax.BeginForm("UserLogin", new AjaxOptions { }))
+            {
+                <input name="PhoneNum" type="text" placeholder="手机号" />
+                <input name="Password" type="password" placeholder="密码" />
+                <button type="submit">登陆</button>
+            }
+        </div>
+        <div class="form">
+            <h2>请注册</h2>
+
+                <input id="Moble" name="PhoneNum" type="text" placeholder="手机号" />
+                <input id="getCode" type="button" class="btn btn-block" value="获取验证码" onclick="GetGodeMassage()" />
+                <input id="num" type="text" placeholder="短信动态码" />
+                <input id="pwd" name="Password" type="password" placeholder="密码" />
+                <input id="confirmPwd" type="password" placeholder="确认密码" />
+                <button type="button" onclick="Judge()">注册</button>
+        </div>
+        <div class="cta"><a href="/Film/ForgetPwd">忘记密码</a></div>
+    </div>
+    <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+    <script src='https://codepen.io/andytran/pen/vLmRVp.js'></script>
+    <script src="~/1_flat-login-form-3-0/js/index.js"></script>
+</body>
+</html>
+<script>
+    function Judge() {
+        var phone = document.getElementById('Moble').value;
+        var pwd = document.getElementById('pwd').value;
+        var confirmPwd = document.getElementById('confirmPwd').value;
+        var code = document.getElementById('code').value;
+        var confirmCode = document.getElementById('num').value;
+        if (phone.length<=0)
+        {
+            alert("请先填写手机号！");
+            return false;
+        }
+        if (!(/^1[3456789]\d{9}$/.test(phone))) {
+            alert("手机号码有误，请重填");
+            return false;
+        } 
+        if (pwd.length <=0) {
+            alert("请先填写密码！");
+            return false;
+        }
+        if (confirmCode.length<=0) {
+            alert("请先填写确认密码密码！");
+            return false;
+        }
+        if (confirmPwd!=pwd) {
+            alert("确认密码不正确，请重新输入！");
+            return false;
+        }
+        if (confirmCode!=code) {
+            alert("请确认验证码！");
+            return false;
+        }
+        else {
+            Ui = {
+                PhoneNum: phone,
+                Password: pwd
+            }
+            $.ajax({
+                url: "http://localhost:13693/api/LoginAndFirstPage/RegisterUser?ui="+JSON.stringify(Ui),
+                type: "post",
+                dataType: "json",
+                success: function (data) {
+                    if (data > 0) {
+                        alert("注册成功！");
+                    }
+                    else {
+                        alert("注册失败");
+                    }
+                }
+            })
+        }
+    }
+    
+    function GetGodeMassage() {
+        var phone = document.getElementById('Moble').value;
+        if (phone == "") {
+            alert("请先填写手机号！");
+            return false;
+        }
+        if (!(/^1[3456789]\d{9}$/.test(phone))) {
+            alert("手机号码有误，请重填");
+            return false;
+        } 
+        var wait = 30;
+        function time(obj) {
+            if (wait == 0) {
+                obj.className = 'btnCode';
+                obj.removeAttribute("disabled");
+                obj.value = "";
+                wait = 30;
+            } else {
+                obj.className = 'btnCodeDisabled';//按钮变灰，不可点击
+                obj.setAttribute("disabled", true);
+                obj.value = "重新发送(" + wait + ")";
+                wait--;
+                setTimeout(function () {
+                    time(obj)
+                },
+                    1000)
+            }
+        }
+        document.getElementById("getCode").onclick = function () { time(this); }
+        $.ajax({
+            url: "/Film/MessageTest?PhoneNum=" + phone,
+            type: "get",
+            dataType: "json",
+            success: function (data) {
+                return;
+            }
+        })
+    }
+</script>

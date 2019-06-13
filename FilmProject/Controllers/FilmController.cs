@@ -23,7 +23,7 @@ namespace FilmDemo.Controllers
         {
             string json = "";
             HttpClient hc = new HttpClient();
-            hc.BaseAddress = new Uri("http://localhost:21916/api/LoginAndFirstPage/");
+            hc.BaseAddress = new Uri("http://localhost:13693/api/LoginAndFirstPage/");
             Task <HttpResponseMessage> task = null;
             switch (Request)
             {
@@ -103,7 +103,14 @@ namespace FilmDemo.Controllers
         {
             return true;
         }
-
+        public ActionResult ForgetPwd()
+        {
+            return View();
+        }
+        public ActionResult EditPwd()
+        {
+            return View();
+        }
         public ActionResult Index()
         {
             return View();
@@ -112,8 +119,8 @@ namespace FilmDemo.Controllers
         {
             try
             {
-                var result = GetApiResult("get", "UserLogin?Num="+PhoneNum+"&Password="+Password);
-                if (result!=null)
+                var result = GetApiResult("get", "UserLogin?userName=" + PhoneNum+ "&passWord=" + Password);
+                if (!result.Contains("null"))
                 {
                     Response.Write("<script>alert('登陆成功！')</script>");
                 }
@@ -139,12 +146,12 @@ namespace FilmDemo.Controllers
                 }
                 else
                 {
-                    Response.Write("<script>alert('注册成功！')</script>");
+                    Response.Write("<script>alert('注册失败！')</script>");
                 }
             }
             catch 
             {
-                Response.Write("<script>alert('注册成功！')</script>");
+                Response.Write("<script>alert('注册失败！')</script>");
             }
             
         }
