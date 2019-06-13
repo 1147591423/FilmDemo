@@ -57,6 +57,7 @@ namespace FilmDemo.Controllers
         public void MessageTest(string PhoneNum)
         {
             //--
+            
             Random rad = new Random();
             int value = rad.Next(1000, 10000);
             Session["value"] = value;
