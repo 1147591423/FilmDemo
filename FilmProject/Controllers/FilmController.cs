@@ -56,6 +56,7 @@ namespace FilmDemo.Controllers
         private const String appcode = "e3322da1be4944b8b8a8a73271d6c69c";
         public void MessageTest(string PhoneNum)
         {
+            //-
             Random rad = new Random();
             int value = rad.Next(1000, 10000);
             Session["value"] = value;
