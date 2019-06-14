@@ -311,6 +311,7 @@
     <Content Include="Views\Film\Login.cshtml" />
     <Content Include="Views\Film\ForgetPwd.cshtml" />
     <Content Include="Views\Film\EditPwd.cshtml" />
+    <Content Include="Views\Film\GetAllUserInfo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,0 +1,488 @@
+﻿
+@{
+    Layout = null;
+}
+
+
+<!DOCTYPE html>
+
+<!--[if IE 8]><html class="ie8"><![endif]-->
+<!--[if IE 9]><html class="ie9"><![endif]-->
+<!--[if gt IE 9]><!-->
+<html>
+<!--<![endif]-->
+<head>
+    <title>猫眼电影 - 一网打尽好电影</title>
+
+    <link rel="dns-prefetch" href="//p0.meituan.net" />
+    <link rel="dns-prefetch" href="//p1.meituan.net" />
+    <link rel="dns-prefetch" href="//ms0.meituan.net" />
+    <link rel="dns-prefetch" href="//s0.meituan.net" />
+    <link rel="dns-prefetch" href="//ms1.meituan.net" />
+    <link rel="dns-prefetch" href="//analytics.meituan.com" />
+    <link rel="dns-prefetch" href="//report.meituan.com" />
+    <link rel="dns-prefetch" href="//frep.meituan.com" />
+
+
+    <meta charset="utf-8">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta http-equiv="cleartype" content="yes" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="renderer" content="webkit" />
+
+    <meta name="HandheldFriendly" content="true" />
+    <meta name="format-detection" content="email=no" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <script>"use strict"; !function () { var i = 0 < arguments.length && void 0 !== arguments[0] ? arguments[0] : "_Owl_", n = window; n[i] || (n[i] = { isRunning: !1, isReady: !1, preTasks: [], dataSet: [], use: function (i, t) { this.isReady && n.Owl && n.Owl[i](t), this.preTasks.push({ api: i, data: [t] }) }, add: function (i) { this.dataSet.push(i) }, run: function () { var t = this; if (!this.isRunning) { this.isRunning = !0; var i = n.onerror; n.onerror = function () { this.isReady || this.add({ type: "jsError", data: arguments }), i && i.apply(n, arguments) }.bind(this), (n.addEventListener || n.attachEvent)("error", function (i) { t.isReady || t.add({ type: "resError", data: [i] }) }, !0) } } }, n[i].run()) }();</script>
+    <script>
+        cid = "c_dxfehttw";
+        ci = 10;
+        window.system = { "user": { "id": 154731690, "token": "iouCMQ9FSVUk8POBhacTs2ZrmPcAAAAAkQgAAMLezjnJqFzKuzo_k96BBhu76zhbclB8nnUNvNIxSXRgJtnzn7sukEQnaAIH-tVYqg", "username": "yBt415082786", "profile": { "age": "25", "avatarType": 0, "avatarurl": "https://img.meituan.net/maoyanuser/7050be720bc70eee8c86c0add2026bc87764.png", "birthday": -2240553957000, "currentExp": 160, "gender": 0, "id": 154731690, "juryLevel": 0, "maoyanAge": "4", "nextTitle": "", "nickName": "yBt415082786", "nickNameStatus": 0, "registerTime": 1422683484000, "roleType": 0, "signatureStatus": 0, "ticketCount": 2, "title": "白银会员", "topicCount": 0, "totalExp": 500, "uid": 1529584000, "userLevel": 2, "userNextLevel": 3, "username": "yBt415082786", "vipType": 0, "visitorCount": 0, "year": 1898, "month": 12, "day": 31, "currentYear": 2019, "birthDayMonthDays": 31, "occupation": "", "job": "", "subjob": "" } }, "uid": 154731690 };
+
+        window.openPlatform = '';
+        window.openPlatformSub = '';
+        window.$mtsiFlag = '0';
+
+    </script>
+    <link rel="stylesheet" href="//s3plus.meituan.net/v1/mss_e2821d7f0cfe4ac1bf9202ecf9590e67/cdn-prod/file:5788b470/common.d0f96cc2.css" />
+    <link rel="stylesheet" href="//s3plus.meituan.net/v1/mss_e2821d7f0cfe4ac1bf9202ecf9590e67/cdn-prod/file:5788b470/profile-profile.13d06bf4.css" />
+    <script crossorigin="anonymous" src="//s3plus.meituan.net/v1/mss_e2821d7f0cfe4ac1bf9202ecf9590e67/cdn-prod/file:5788b470/stat.88d57c80.js"></script>
+    <script>if (window.devicePixelRatio >= 2) { document.write('<link rel="stylesheet" href="//s3plus.meituan.net/v1/mss_e2821d7f0cfe4ac1bf9202ecf9590e67/cdn-prod/file:5788b470/image-2x.8ba7074d.css"/>') }</script>
+    <style>
+    </style>
+</head>
+<body>
+
+
+    <div class="header">
+        <div class="header-inner">
+            <a href="/" class="logo" data-act="icon-click"></a>
+            <div class="city-container" currentcityid:10 }">
+                <div class="city-selected">
+                    <div class="city-name">
+                    </div>
+                </div>
+                <div class="city-list" localcityid: 10 }">
+                </div>
+            </div>
+
+
+            <div class="nav">
+                <ul class="navbar">
+                    <li><a href="/Film/FistPage">首页</a></li>
+                    <li><a href="/Film/FilmPage">电影</a></li>
+                    <li><a href="/Film/CinemaPage">影院</a></li>
+                    <li><a href="/Film/ListPage">榜单</a></li>
+                </ul>
+            </div>
+            <div class="user-info">
+                <div class="user-avatar J-login">
+                    <img src="https://p0.meituan.net/movie/7dd82a16316ab32c8359debdb04396ef2897.png">
+                    <span class="caret"></span>
+                    <ul class="user-menu" id="IsLogin">
+                        <li><a onclick="Logins()">登录</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <form action="/query" target="_blank" class="search-form" data-actform="search-click">
+                <input name="kw" class="search" type="search" maxlength="32" placeholder="找影视剧、影人、影院" autocomplete="off">
+                <input class="submit" type="submit" value="">
+            </form>
+
+
+
+        </div>
+    </div>
+    <div class="header-placeholder"></div>
+
+
+    <div class="container" id="app" class="page-profile/profile">
+        <div class="content">
+            <div class="main">
+                <div class="info-content clearfix">
+                    <div class="user-profile-nav">
+                        <h1>个人中心</h1>
+                        <a href="/profile/orders" class="orders ">我的订单</a>
+                        <a href="/profile" class="profile active">基本信息</a>
+                    </div>
+
+                    <div class="profile-container">
+                        <div class="profile-title">
+                            基本信息
+                        </div>
+                        <div class="avatar-container">
+                            <div class="avatar-content">
+                                <img class="J-setted-avatar" src="https://img.meituan.net/maoyanuser/7050be720bc70eee8c86c0add2026bc87764.png">
+                                <div class="J-upload-avatar-w upload-avatar-image">
+                                    <input type="button" class="J-upload-avatar upload-btn" value="更换头像">
+                                    <input type="file" id="fileUpload" name="file" />
+
+                                </div>
+                                <div class="tips">支持JPG,JPEG,PNG格式,且文件需小于1M</div>
+                            </div>
+                        </div>
+                        <form id="J-userexinfo-form" class="userexinfo-form">
+                            <div class="userexinfo-form-section">
+                                <p>昵称：</p>
+                                <span>
+                                    <input type="text" name="nickName" id="userexinfo-form-nickname" class="ui-checkbox" placeholder="2-15个字，支持中英文、数字" value="yBt415082786">
+                                </span>
+                            </div>
+                            <div class="userexinfo-form-section">
+                                <p>手机号：</p>
+                                <span>
+                                    <input type="text" disabled="disabled" name="nickName" id="phoneNum" class="ui-checkbox" placeholder="2-15个字，支持中英文、数字" value="yBt415082786">
+                                </span>
+                            </div>
+                            <div class="userexinfo-form-section">
+                                <p>性别：</p>
+                                <span>
+                                    <input type="radio" name="gender" id="userexinfo-form-gender-1" value="1" class="ui-radio radio-first">
+                                    <label for="userexinfo-form-gender-1">男</label>
+                                </span>
+                                <span>
+                                    <input type="radio" name="gender" id="userexinfo-form-gender-2" value="2" class="ui-radio">
+                                    <label for="userexinfo-form-gender-2">女</label>
+                                </span>
+                            </div>
+                            <div class="date-picker userexinfo-form-section">
+                                <p>生日：</p>
+                                <span>
+                                    <div class="ui-select">
+                                        <select name="year" class="ui-select">
+                                            <option>--</option>
+                                            <option value="2019">2019</option>
+                                            <option value="2018">2018</option>
+                                            <option value="2017">2017</option>
+                                            <option value="2016">2016</option>
+                                            <option value="2015">2015</option>
+                                            <option value="2014">2014</option>
+                                            <option value="2013">2013</option>
+                                            <option value="2012">2012</option>
+                                            <option value="2011">2011</option>
+                                            <option value="2010">2010</option>
+                                            <option value="2009">2009</option>
+                                            <option value="2008">2008</option>
+                                            <option value="2007">2007</option>
+                                            <option value="2006">2006</option>
+                                            <option value="2005">2005</option>
+                                            <option value="2004">2004</option>
+                                            <option value="2003">2003</option>
+                                            <option value="2002">2002</option>
+                                            <option value="2001">2001</option>
+                                            <option value="2000">2000</option>
+                                            <option value="1999">1999</option>
+                                            <option value="1998">1998</option>
+                                            <option value="1997">1997</option>
+                                            <option value="1996">1996</option>
+                                            <option value="1995">1995</option>
+                                            <option value="1994">1994</option>
+                                            <option value="1993">1993</option>
+                                            <option value="1992">1992</option>
+                                            <option value="1991">1991</option>
+                                            <option value="1990">1990</option>
+                                            <option value="1989">1989</option>
+                                            <option value="1988">1988</option>
+                                            <option value="1987">1987</option>
+                                            <option value="1986">1986</option>
+                                            <option value="1985">1985</option>
+                                            <option value="1984">1984</option>
+                                            <option value="1983">1983</option>
+                                            <option value="1982">1982</option>
+                                            <option value="1981">1981</option>
+                                            <option value="1980">1980</option>
+                                            <option value="1979">1979</option>
+                                            <option value="1978">1978</option>
+                                            <option value="1977">1977</option>
+                                            <option value="1976">1976</option>
+                                            <option value="1975">1975</option>
+                                            <option value="1974">1974</option>
+                                            <option value="1973">1973</option>
+                                            <option value="1972">1972</option>
+                                            <option value="1971">1971</option>
+                                            <option value="1970">1970</option>
+                                            <option value="1969">1969</option>
+                                            <option value="1968">1968</option>
+                                            <option value="1967">1967</option>
+                                            <option value="1966">1966</option>
+                                            <option value="1965">1965</option>
+                                            <option value="1964">1964</option>
+                                            <option value="1963">1963</option>
+                                            <option value="1962">1962</option>
+                                            <option value="1961">1961</option>
+                                            <option value="1960">1960</option>
+                                            <option value="1959">1959</option>
+                                            <option value="1958">1958</option>
+                                            <option value="1957">1957</option>
+                                            <option value="1956">1956</option>
+                                            <option value="1955">1955</option>
+                                            <option value="1954">1954</option>
+                                            <option value="1953">1953</option>
+                                            <option value="1952">1952</option>
+                                            <option value="1951">1951</option>
+                                            <option value="1950">1950</option>
+                                            <option value="1949">1949</option>
+                                            <option value="1948">1948</option>
+                                            <option value="1947">1947</option>
+                                            <option value="1946">1946</option>
+                                            <option value="1945">1945</option>
+                                            <option value="1944">1944</option>
+                                            <option value="1943">1943</option>
+                                            <option value="1942">1942</option>
+                                            <option value="1941">1941</option>
+                                            <option value="1940">1940</option>
+                                        </select>
+                                    </div>
+                                    <span class="tip">年</span>
+                                </span>
+                                <span>
+                                    <div class="ui-select">
+                                        <select name="month" class="ui-select">
+                                            <option>--</option>
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>
+                                            <option value="6">6</option>
+                                            <option value="7">7</option>
+                                            <option value="8">8</option>
+                                            <option value="9">9</option>
+                                            <option value="10">10</option>
+                                            <option value="11">11</option>
+                                            <option value="12" selected="">12</option>
+                                        </select>
+                                    </div>
+                                    <span class="tip">月</span>
+                                </span>
+                                <span>
+                                    <div class="ui-select">
+                                        <select name="day" class="ui-select">
+                                            <option>--</option>
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>
+                                            <option value="6">6</option>
+                                            <option value="7">7</option>
+                                            <option value="8">8</option>
+                                            <option value="9">9</option>
+                                            <option value="10">10</option>
+                                            <option value="11">11</option>
+                                            <option value="12">12</option>
+                                            <option value="13">13</option>
+                                            <option value="14">14</option>
+                                            <option value="15">15</option>
+                                            <option value="16">16</option>
+                                            <option value="17">17</option>
+                                            <option value="18">18</option>
+                                            <option value="19">19</option>
+                                            <option value="20">20</option>
+                                            <option value="21">21</option>
+                                            <option value="22">22</option>
+                                            <option value="23">23</option>
+                                            <option value="24">24</option>
+                                            <option value="25">25</option>
+                                            <option value="26">26</option>
+                                            <option value="27">27</option>
+                                            <option value="28">28</option>
+                                            <option value="29">29</option>
+                                            <option value="30">30</option>
+                                            <option value="31" selected="">31</option>
+                                        </select>
+                                    </div>
+                                    <span class="tip">日</span>
+                                </span>
+                            </div>
+                            <input type="hidden" name="csrf" value="8efd9ba00221ee263d7b2547430bae0ea634553fbb3c16d949a73a2440420861">
+                            <div class="userexinfo-bottom-section clearfix">
+                                <input type="submit" class="form-save-btn" value="保存">
+                                <!-- <span id="cancell-btn" class="cancel_alert hand">注销账号1</span> -->
+                            </div>
+
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="body-mask"></div>
+            <div id="img-cropper" class="img-cropper">
+                <div class="img-cropper-container">
+                    <div class="img-cropper-header">
+                        上传头像
+                        <span class="close-icon"></span>
+                    </div>
+                    <div class="img-cropper-content">
+                        <div class="img-main">
+                            <div class="img-main-wrapper">
+                                <img src="https://img.meituan.net/maoyanuser/7050be720bc70eee8c86c0add2026bc87764.png">
+                            </div>
+                        </div>
+                        <div class="img-preview">
+                            <p>预览</p>
+                            <div class="img-preview-block"></div>
+                        </div>
+                    </div>
+                    <div class="img-cropper-footer">
+                        <div class="img-btn-confirm">
+                            确认
+                        </div>
+                        <div class="img-btn-cancel">
+                            取消
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <script>
+                var occupation = { "信息技术": ["互联网", "IT", "通信", "电子", "游戏"], "金融保险": ["投资", "股票基金", "保险", "银行", "信托担保"], "商业服务": ["资讯", "贸易", "美容保健", "家政服务", "旅游", "餐饮酒店", "娱乐休闲", "批发零售", "汽车"], "建筑地产": ["房地产", "建筑", "物业", "装修"], "工程制造": ["机械制造", "生物医药", "食品", "服装", "能源", "化工"], "交通运输": ["航空", "铁路", "航运船舶", "公共交通", "物流运输"], "文化传媒": ["媒体出版", "设计", "广告创意", "动漫", "公关会展", "摄影"], "娱乐体育": ["影视", "运动体育", "音乐", "模特"], "公共事业": ["医疗", "教育", "政府机关", "科研", "公益机构", "农林牧渔"], "学生": ["学生"], "其他": ["其他"] };
+            </script>
+
+        </div>
+
+        <div class="mask3">
+            <div class="modal-container" style="display:none">
+                <div class="modal">
+                    <span class="icon"></span>
+
+                    <p class="tip">您确定要删除该订单嘛？删除后，不可恢复～</p>
+
+                    <div class="short btn ok-btn">确定</div>
+                    <div class="short btn cancel-btn">取消</div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class='mask1'>
+            <div class="modal-container" style="display:none">
+                <div class="modal">
+                    <span class="icon"></span>
+
+                    <p class="tip">请注意，注销账号会清空所有订单信息、影评、积分、<br>账户余额等信息且无法找回，是否继续？</p>
+
+                    <div class="short btn ok-btn">确定</div>
+                    <div class="short btn cancel-btn">取消</div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class='mask2'>
+            <div class="modal-container" style="display:none">
+                <div class="modal">
+                    <span class="icon"></span>
+
+                    <p class="tip">请联系客服10105335</p>
+
+                    <div class="ok-btn btn">我知道了</div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="footer">
+        <p class="friendly-links">
+            关于猫眼 :
+            <a href="http://ir.maoyan.com/s/index.php#pageScroll0" target="_blank">关于我们</a>
+            <span></span>
+            <a href="http://ir.maoyan.com/s/index.php#pageScroll1" target="_blank">管理团队</a>
+            <span></span>
+            <a href="http://ir.maoyan.com/s/index.php#pageScroll2" target="_blank">投资者关系</a>
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            友情链接 :
+            <a href="http://www.meituan.com" data-query="utm_source=wwwmaoyan" target="_blank">美团网</a>
+            <span></span>
+            <a href="http://www.gewara.com" data-query="utm_source=wwwmaoyan">格瓦拉</a>
+            <span></span>
+            <a href="http://i.meituan.com/client" data-query="utm_source=wwwmaoyan" target="_blank">美团下载</a>
+            <span></span>
+            <a href="https://www.huanxi.com" data-query="utm_source=maoyan_pc" target="_blank">欢喜首映</a>
+        </p>
+        <p class="friendly-links">
+            商务合作邮箱：v@maoyan.com
+            客服电话：10105335
+            违法和不良信息举报电话：4006018900
+            <br />
+            投诉举报邮箱：tousujubao@meituan.com
+            舞弊线索举报邮箱：wubijubao@maoyan.com
+        </p>
+        <p>
+            &copy;2016
+            猫眼电影 maoyan.com
+            <a href="https://tsm.miit.gov.cn/pages/EnterpriseSearchList_Portal.aspx?type=0&keyword=京ICP证160733号&pageNo=1" target="_blank">京ICP证160733号</a>
+            <a href="http://www.miibeian.gov.cn" target="_blank">京ICP备16022489号-1</a>
+            <a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=11010102003232" target="_blank">京公网安备 11010102003232号</a>
+            <a href="/about/licence" target="_blank">网络文化经营许可证</a>
+            <a href="http://www.meituan.com/about/rules" target="_blank">电子公告服务规则</a>
+        </p>
+        <p>北京猫眼文化传媒有限公司</p>
+    </div>
+
+    <script crossorigin="anonymous" src="//www.dpfile.com/app/owl/static/owl_1.7.11.js"></script>
+    <script>
+        Owl.start({
+            project: 'com.sankuai.movie.fe.mywww',
+            pageUrl: location.href.split('?')[0].replace(/\/\d+/g, '/:id'),
+            devMode: false
+        })
+    </script>
+    <!--[if IE 8]><script crossorigin="anonymous" src="//s3plus.meituan.net/v1/mss_e2821d7f0cfe4ac1bf9202ecf9590e67/cdn-prod/file:5788b470/es5-shim.bbad933f.js"></script><![endif]-->
+    <!--[if IE 8]><script crossorigin="anonymous" src="//s3plus.meituan.net/v1/mss_e2821d7f0cfe4ac1bf9202ecf9590e67/cdn-prod/file:5788b470/es5-sham.d6ea26f4.js"></script><![endif]-->
+    <script crossorigin="anonymous" src="//s3plus.meituan.net/v1/mss_e2821d7f0cfe4ac1bf9202ecf9590e67/cdn-prod/file:5788b470/common.96634b92.js"></script>
+    <script crossorigin="anonymous" src="//s3plus.meituan.net/v1/mss_e2821d7f0cfe4ac1bf9202ecf9590e67/cdn-prod/file:5788b470/profile-profile.59b4a3a3.js"></script>
+</body>
+</html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>GetAllUserInfo</title>
+</head>
+<body>
+    <div>
+    </div>
+</body>
+</html>
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+<script>
+    window.onload = function () {
+        GetCookie();
+        getPhoneNum();
+    }
+    function GetCookie() {
+        $.ajax({
+            url: "/Film/GetCookie",
+            type: "get",
+            dataType: "json",
+            success: function (data) {
+                if (data != null) {
+                    $("#IsLogin").empty();
+                    var str = "<li class='text'><a style='cursor: pointer'> 我的订单</a></li ><li class='text'><a href='/Film/GetAllUserInfo' style='cursor: pointer'>基本信息</a></li ><li class='text'><a style='cursor: pointer'>退出登录</a></li > ";
+                    $("#IsLogin").append(str);
+                }
+            }
+
+        })
+    }
+    function getPhoneNum() {
+        var url = location.search; //获取url中"?"符后的字串   
+        var theRequest = new Object();
+        if (url.indexOf("?") != -1) {
+            var str = url.substr(1);
+            strs = str.split("&");
+            for (var i = 0; i < strs.length; i++) {
+                theRequest[strs[i].split("=")[0]] = unescape(strs[i].split("=")[1]);
+            }
+        }
+        $("#phoneNum").val(theRequest["PhoneNum"]);
+    }
+</script>
