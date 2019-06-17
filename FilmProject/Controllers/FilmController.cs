@@ -13,6 +13,7 @@ using FilmDemo.Models;
 using System.Diagnostics;
 using System.Net.Security;
 using System.Security.Cryptography.X509Certificates;
+using System.Globalization;
 
 namespace FilmDemo.Controllers
 {
@@ -25,6 +26,37 @@ namespace FilmDemo.Controllers
             HttpClient hc = new HttpClient();
             hc.BaseAddress = new Uri("http://localhost:13693/api/LoginAndFirstPage/");
             Task <HttpResponseMessage> task = null;
+            switch (Request)
+            {
+                case "get":
+                    task = hc.GetAsync(ActionName);
+                    break;
+                case "post":
+                    task = hc.PostAsJsonAsync(ActionName, obj);
+                    break;
+                case "put":
+                    task = hc.PutAsJsonAsync(ActionName, obj);
+                    break;
+                case "delete":
+                    task = hc.DeleteAsync(ActionName);
+                    break;
+            }
+            task.Wait();
+            var result = task.Result;
+            if (result.IsSuccessStatusCode)
+            {
+                var GetResultTask = result.Content.ReadAsStringAsync();
+                GetResultTask.Wait();
+                json = GetResultTask.Result;
+            }
+            return json;
+        }
+        public string GetApiResult1(string Request, string ActionName, object obj = null)
+        {
+            string json = "";
+            HttpClient hc = new HttpClient();
+            hc.BaseAddress = new Uri("http://localhost:13693/api/details/");
+            Task<HttpResponseMessage> task = null;
             switch (Request)
             {
                 case "get":
@@ -163,29 +195,40 @@ namespace FilmDemo.Controllers
             List<FilmInfo> list = JsonConvert.DeserializeObject<List<FilmInfo>>(result);
             return View(list);
         }
+        //热映
         public ActionResult FilmPage()
         {
             return View();
         }
+        //影院
         public ActionResult CinemaPage()
         {
             return View();
         }
+        //榜单
         public ActionResult ListPage()
         {
             return View();
         }
+        //影片信息
         public ActionResult FilmInfo()
         {
             return View();
         }
+
         public ActionResult GetTicket()
         {
             return View();
         }
-        public ActionResult GetSitAndGetTicket()
-        { 
-            return View();
+        //影院信息
+        public ActionResult GetSitAndGetTicket(int CId=27,int FId=27)
+        {
+            var result = GetApiResult1("get", "CinemaShow?CId=" + CId);
+            var result1 = GetApiResult1("get", "FilmImg?FId=" + FId);
+            ViewModels view = new ViewModels();
+            view.Cinemas= JsonConvert.DeserializeObject<List<CinemaList>>(result);
+            view.FilmShow = JsonConvert.DeserializeObject<List<FilmInfo>>(result1);
+            return View(view);
         }
         public ActionResult GetSit()
         {
@@ -203,5 +246,10 @@ namespace FilmDemo.Controllers
         {
             return View();
         }
+    }
+    public class ViewModels
+    {
+        public List<CinemaList> Cinemas { get; set; }
+        public List<FilmInfo> FilmShow { get; set; }
     }
 }

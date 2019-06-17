@@ -128,6 +128,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\CinemaList.cs" />
     <Compile Include="Models\FilmInfo.cs" />
     <Compile Include="Models\UserInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -141,6 +142,7 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Img\1.png" />
+    <Content Include="Content\Img\101.png" />
     <Content Include="Content\Img\2.png" />
     <Content Include="Content\Img\3.png" />
     <Content Include="Content\Img\4.png" />
@@ -311,6 +313,7 @@
     <Content Include="Views\Film\Login.cshtml" />
     <Content Include="Views\Film\ForgetPwd.cshtml" />
     <Content Include="Views\Film\EditPwd.cshtml" />
+    <Content Include="Views\_FilmImgPage1.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

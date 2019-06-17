@@ -1,0 +1,14 @@
+﻿@model List<FilmDemo.Models.FilmInfo>
+
+@foreach (var item in Model)
+{
+    <div id="@item.FId"
+         class="movie"
+         data-index="0"
+         data-movieid="346559"
+         data-bid="b_uup5nnq7"
+         data-act="cinema-movie-click"
+         data-val="{city_id:10, movie_id:346559, cinema_id:13237}">
+        <img src="@item.FilmPhotos" alt="" >
+    </div>
+}
