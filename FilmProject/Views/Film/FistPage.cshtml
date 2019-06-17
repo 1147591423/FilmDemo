@@ -12,7 +12,7 @@
 <html>
 <!--<![endif]-->
 <head>
-    <title>猫眼电影 - 一网打尽好电影</title>
+    <title>水墨电影 - 一网打尽好电影</title>
 
     <link rel="dns-prefetch" href="//p0.meituan.net" />
     <link rel="dns-prefetch" href="//p1.meituan.net" />
@@ -25,7 +25,7 @@
 
 
     <meta charset="utf-8">
-    <meta name="keywords" content="电影,电视剧,票房,美剧,猫眼电影,电影排行榜,电影票,经典电影,在线观看">
+    <meta name="keywords" content="电影,电视剧,票房,美剧,水墨电影,电影排行榜,电影票,经典电影,在线观看">
     <meta name="description" content="国内观众优选的在线购票平台，用户流行的观影决策平台。">
     <meta http-equiv="cleartype" content="yes" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -45,7 +45,7 @@
 
         window.openPlatform = '';
         window.openPlatformSub = '';
-        window.$mtsiFlag = '0'; 
+        window.$mtsiFlag = '0';
         //88
         //77
 
@@ -67,7 +67,7 @@
 
     <div class="header">
         <div class="header-inner">
-            <a href="/" class="logo" data-act="icon-click"></a>
+           
             <div class="city-container" currentcityid:10 }">
                 <div class="city-selected">
                     <div class="city-name">
@@ -80,6 +80,8 @@
 
             <div class="nav">
                 <ul class="navbar">
+                    
+                    <li><img src="~/Content/Img/e1468264f3428ac45b1c24cab246d219.png" /></li>
                     <li><a href="/Film/FistPage">首页</a></li>
                     <li><a href="/Film/FilmPage">电影</a></li>
                     <li><a href="/Film/CinemaPage">影院</a></li>
@@ -88,9 +90,10 @@
             </div>
             <div class="user-info">
                 <div class="user-avatar J-login">
+
                     <img src="https://p0.meituan.net/movie/7dd82a16316ab32c8359debdb04396ef2897.png">
                     <span class="caret"></span>
-                    <ul class="user-menu">
+                    <ul class="user-menu" id="IsLogin">
                         <li><a onclick="Logins()">登录</a></li>
                     </ul>
                 </div>
@@ -101,12 +104,7 @@
                 <input class="submit" type="submit" value="">
             </form>
 
-            <div class="app-download">
-                <a href="/app" target="_blank">
-                    <div class="download-icon">
-                    </div>
-                </a>
-            </div>
+
 
         </div>
     </div>
@@ -276,8 +274,8 @@
                             <a class="more" target="_blank" data-act="moreDayTip-click" href="https://piaofang.maoyan.com/">查看更多 <span class="panel-arrow panel-arrow-red"></span></a>
                         </p>
                         <p class="meta-info">
-                            北京时间 20:51:28
-                            <span class="pull-right">猫眼专业版实时票房数据</span>
+                             北京时间 20:51:28
+                            <span class="pull-right">水墨专业版实时票房数据</span>
                         </p>
                     </div>
                 </div>
@@ -610,34 +608,34 @@
                         </div>
                         <div class="panel-content">
                             <dl class="movie-list">
-                                
-                                    @foreach (var item in Model)
-                                    {
-                                        <dd>
-                                            <div class="movie-item">
-                                                <a href="/Film/FilmInfo344328" target="_blank" data-act="playingMovie-click" movieid:344328}">
-                                                    <div class="movie-poster">
-                                                        <img class="poster-default" src="//s3plus.meituan.net/v1/mss_e2821d7f0cfe4ac1bf9202ecf9590e67/cdn-prod/file:5788b470/image/loading_2.e3d934bf.png" />
-                                                        <img src="@item.FilmPhotos" />
-                                                        <div class="movie-overlay movie-overlay-bg">
-                                                            <div class="movie-info">
-                                                                <div class="movie-score"><i class="integer">@item.Grade</div>
-                                                                <div class="movie-title movie-title-padding"
-                                                                     title="@item.FilmCName">@item.FilmCName</div>
-                                                                </div>
+
+                                @foreach (var item in Model)
+                                {
+                                    <dd>
+                                        <div class="movie-item">
+                                            <a href="/Film/FilmInfo344328" target="_blank" data-act="playingMovie-click" movieid:344328}">
+                                                <div class="movie-poster">
+                                                    <img class="poster-default" src="//s3plus.meituan.net/v1/mss_e2821d7f0cfe4ac1bf9202ecf9590e67/cdn-prod/file:5788b470/image/loading_2.e3d934bf.png" />
+                                                    <img src="@item.FilmPhotos" />
+                                                    <div class="movie-overlay movie-overlay-bg">
+                                                        <div class="movie-info">
+                                                            <div class="movie-score"><i class="integer">@item.Grade</div>
+                                                            <div class="movie-title movie-title-padding"
+                                                                 title="@item.FilmCName">@item.FilmCName</div>
                                                             </div>
                                                         </div>
-                                                    </a>
-                                                    <div class="movie-detail movie-detail-strong movie-sale">
-                                                        <a href="/cinemas?movieId=344328"
-                                                           class="active" target="_blank" data-act="salePlayingMovie-click" movieid:344328}">购 票</a>
                                                     </div>
-                                                    <div class="movie-ver"><i class="imax3d"></i></div>
+                                                </a>
+                                                <div class="movie-detail movie-detail-strong movie-sale">
+                                                    <a href="/cinemas?movieId=344328"
+                                                       class="active" target="_blank" data-act="salePlayingMovie-click" movieid:344328}">购 票</a>
                                                 </div>
-                                         </dd>
-                                        }
-                                
-</dl>
+                                                <div class="movie-ver"><i class="imax3d"></i></div>
+                                            </div>
+                                        </dd>
+                                    }
+
+                            </dl>
                         </div>
                     </div>
 
@@ -996,7 +994,7 @@
 
                                 <dd>
                                     <div class="movie-item">
-                                        <a href="/Film/FilmInfo246397" target="_blank" data-act="hotMovie-click" movieid:246397}">
+                                        <a  href="/Film/FilmInfo246397" target="_blank" data-act="hotMovie-click" movieid:246397}">
                                             <div class="movie-poster">
                                                 <img class="poster-default" src="//s3plus.meituan.net/v1/mss_e2821d7f0cfe4ac1bf9202ecf9590e67/cdn-prod/file:5788b470/image/loading_2.e3d934bf.png" />
                                                 <img data-src="https://p0.meituan.net/movie/07b4127cff2289cd91b65628f4417ac37666558.jpg@160w_220h_1e_1c" />
@@ -1022,7 +1020,7 @@
 
     <div class="footer">
         <p class="friendly-links">
-            关于猫眼 :
+            关于水墨 :
             <a href="http://ir.maoyan.com/s/index.php#pageScroll0" target="_blank">关于我们</a>
             <span></span>
             <a href="http://ir.maoyan.com/s/index.php#pageScroll1" target="_blank">管理团队</a>
@@ -1048,41 +1046,82 @@
         </p>
         <p>
             &copy;2016
-            猫眼电影 maoyan.com
+            水墨电影 maoyan.com
             <a href="https://tsm.miit.gov.cn/pages/EnterpriseSearchList_Portal.aspx?type=0&keyword=京ICP证160733号&pageNo=1" target="_blank">京ICP证160733号</a>
             <a href="http://www.miibeian.gov.cn" target="_blank">京ICP备16022489号-1</a>
             <a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=11010102003232" target="_blank">京公网安备 11010102003232号</a>
             <a href="/about/licence" target="_blank">网络文化经营许可证</a>
             <a href="http://www.meituan.com/about/rules" target="_blank">电子公告服务规则</a>
         </p>
-        <p>北京猫眼文化传媒有限公司</p>
-    @*</div>*@
+        <p> 上海水墨文化传媒有限公司</p>
 
-    <script crossorigin="anonymous" src="//www.dpfile.com/app/owl/static/owl_1.7.11.js"></script>
-    <script>
-        Owl.start({
-            project: 'com.sankuai.movie.fe.mywww',
-            pageUrl: location.href.split('?')[0].replace(/\/\d+/g, '/:id'),
-            devMode: false
-        })
-        function Logins() {
-            layer.open({
-                type: 2,
-                title: '登  陆',
-                fix: false,
-                maxmin: true,
-                shadeClose: true,
-                shade: 0.8,
-                area: ['500px', '700px'],
-                content: '/Film/Login',
-                end: function () {
-                    location.reload();
-                }
-            });
+        <script crossorigin="anonymous" src="//www.dpfile.com/app/owl/static/owl_1.7.11.js"></script>
+        <script>
+            Owl.start({
+                project: 'com.sankuai.movie.fe.mywww',
+                pageUrl: location.href.split('?')[0].replace(/\/\d+/g, '/:id'),
+                devMode: false
+            })
+            function Logins() {
+                layer.open({
+                    type: 2,
+                    title: '登  陆',
+                    fix: false,
+                    maxmin: true,
+                    shadeClose: true,
+                    shade: 0.8,
+                    area: ['600px', '700px'],
+                    content: '/Film/Login',
+                    end: function () {
+                        location.reload();
+                    }
+                });
 
-        }
-    </script>
-    <script crossorigin="anonymous" src="//s3plus.meituan.net/v1/mss_e2821d7f0cfe4ac1bf9202ecf9590e67/cdn-prod/file:5788b470/home-index.ceb18b5a.js"></script>
+            }
+            
+        </script>
+        <script src="~/Scripts/jquery-3.3.1.js"></script>
+        <script>
+            window.onload = function () {
+                GetCookie();
+            }
+            function GetCookie() {
+                $.ajax({
+                    url: "/Film/GetCookie",
+                    type: "get",
+                    dataType: "json",
+                    success: function (data) {
+                        if (data != null) {
+                            $("#IsLogin").empty();
+                            var str = "<li class='text'><a style='cursor: pointer'> 我的订单</a></li ><li class='text'><a onclick='GetAllInfo()' style='cursor: pointer'>基本信息</a></li ><li class='text'><a onclick='GoOut()' style='cursor: pointer'>退出登录</a></li > ";
+                            $("#IsLogin").append(str);
+                        }
+                    }
+
+                })
+            }
+            function GetAllInfo() {
+                $.ajax({
+                    url: "/Film/GetPhoneNum",
+                    success: function (data) {
+                        location.href = "/Film/GetAllUserInfo?PhoneNum=" + data;
+                    }
+                })
+            }
+            function GoOut() {
+                $.ajax({
+                    url: "/Film/ClearCookie",
+                    success: function (data) {
+                        if (data==1) {
+                            $("#IsLogin").empty();
+                            var str = "<li class='text'><a style='cursor: pointer'>登录</a></li >";
+                            $("#IsLogin").append(str);
+                        }
+                    }
+                })
+            }
+        </script>
+        @*<script crossorigin="anonymous" src="//s3plus.meituan.net/v1/mss_e2821d7f0cfe4ac1bf9202ecf9590e67/cdn-prod/file:5788b470/home-index.ceb18b5a.js"></script>*@
 </body>
 </html>
 

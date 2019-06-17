@@ -128,7 +128,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\CinemaList.cs" />
     <Compile Include="Models\FilmInfo.cs" />
     <Compile Include="Models\UserInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -142,7 +141,6 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Img\1.png" />
-    <Content Include="Content\Img\101.png" />
     <Content Include="Content\Img\2.png" />
     <Content Include="Content\Img\3.png" />
     <Content Include="Content\Img\4.png" />
@@ -152,6 +150,7 @@
     <Content Include="Content\Img\8.png" />
     <Content Include="Content\Img\9.png" />
     <Content Include="Content\Img\10.png" />
+    <Content Include="Content\Img\e1468264f3428ac45b1c24cab246d219.png" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -313,7 +312,7 @@
     <Content Include="Views\Film\Login.cshtml" />
     <Content Include="Views\Film\ForgetPwd.cshtml" />
     <Content Include="Views\Film\EditPwd.cshtml" />
-    <Content Include="Views\_FilmImgPage1.cshtml" />
+    <Content Include="Views\Film\GetAllUserInfo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

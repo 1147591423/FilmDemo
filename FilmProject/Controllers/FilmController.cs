@@ -25,7 +25,7 @@ namespace FilmDemo.Controllers
             string json = "";
             HttpClient hc = new HttpClient();
             hc.BaseAddress = new Uri("http://localhost:13693/api/LoginAndFirstPage/");
-            Task <HttpResponseMessage> task = null;
+            Task<HttpResponseMessage> task = null;
             switch (Request)
             {
                 case "get":
@@ -89,11 +89,11 @@ namespace FilmDemo.Controllers
         public void MessageTest(string PhoneNum)
         {
             //--
-            
+
             Random rad = new Random();
             int value = rad.Next(1000, 10000);
             Session["value"] = value;
-            String querys = "mobile="+ PhoneNum + "&param=code:"+ value + "&tpl_id=TP1711063";
+            String querys = "mobile=" + PhoneNum + "&param=code:" + value + "&tpl_id=TP1711063";
             String bodys = "";
             String url = host + path;
             HttpWebRequest httpRequest = null;
@@ -149,25 +149,58 @@ namespace FilmDemo.Controllers
         {
             return View();
         }
-        public void UserLogin(string PhoneNum,string Password)
+        static HttpCookie cookie = null;
+        public void UserLogin(string PhoneNum, string Password)
         {
             try
             {
-                var result = GetApiResult("get", "UserLogin?userName=" + PhoneNum+ "&passWord=" + Password);
+                var result = GetApiResult("get", "UserLogin?userName=" + PhoneNum + "&passWord=" + Password);
                 if (!result.Contains("null"))
                 {
+                    cookie = new HttpCookie(PhoneNum, PhoneNum);
+                    cookie.Expires = DateTime.Now.AddMinutes(1);
                     Response.Write("<script>alert('登陆成功！')</script>");
+
                 }
                 else
                 {
                     Response.Write("<script>alert('登陆失败！')</script>");
                 }
             }
-            catch 
+            catch
             {
                 Response.Write("<script>alert('登陆失败！')</script>");
             }
-            
+
+        }
+        public string GetCookie()
+        {
+            if (cookie == null)
+            {
+                return "";
+            }
+            UserInfo us = new UserInfo
+            {
+                PhoneNum = cookie.Value
+            };
+            return JsonConvert.SerializeObject(us);
+        }
+        public int ClearCookie()
+        {
+            if (cookie!=null)
+            {
+                cookie.Expires = DateTime.Now.AddDays(-5);
+                Response.Cookies.Add(cookie);
+                return 1;
+            }
+            else
+            {
+                return 0;
+            }
+        }
+        public string GetPhoneNum()
+        {
+            return cookie.Value;
         }
         public void RegisterUser(UserInfo ui)
         {
@@ -243,6 +276,10 @@ namespace FilmDemo.Controllers
             return View();
         }
         public ActionResult Login()
+        {
+            return View();
+        }
+        public ActionResult GetAllUserInfo()
         {
             return View();
         }
