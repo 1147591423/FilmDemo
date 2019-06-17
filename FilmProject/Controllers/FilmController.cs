@@ -153,6 +153,19 @@ namespace FilmDemo.Controllers
             };
             return JsonConvert.SerializeObject(us);
         }
+        public int ClearCookie()
+        {
+            if (cookie!=null)
+            {
+                cookie.Expires = DateTime.Now.AddDays(-5);
+                Response.Cookies.Add(cookie);
+                return 1;
+            }
+            else
+            {
+                return 0;
+            }
+        }
         public string GetPhoneNum()
         {
             return cookie.Value;

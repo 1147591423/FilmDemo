@@ -67,7 +67,7 @@
 
     <div class="header">
         <div class="header-inner">
-            <a href="/" class="logo" data-act="icon-click"></a>
+           
             <div class="city-container" currentcityid:10 }">
                 <div class="city-selected">
                     <div class="city-name">
@@ -80,6 +80,8 @@
 
             <div class="nav">
                 <ul class="navbar">
+                    
+                    <li><img src="~/Content/Img/e1468264f3428ac45b1c24cab246d219.png" /></li>
                     <li><a href="/Film/FistPage">首页</a></li>
                     <li><a href="/Film/FilmPage">电影</a></li>
                     <li><a href="/Film/CinemaPage">影院</a></li>
@@ -88,6 +90,7 @@
             </div>
             <div class="user-info">
                 <div class="user-avatar J-login">
+
                     <img src="https://p0.meituan.net/movie/7dd82a16316ab32c8359debdb04396ef2897.png">
                     <span class="caret"></span>
                     <ul class="user-menu" id="IsLogin">
@@ -1090,7 +1093,7 @@
                     success: function (data) {
                         if (data != null) {
                             $("#IsLogin").empty();
-                            var str = "<li class='text'><a style='cursor: pointer'> 我的订单</a></li ><li class='text'><a onclick='GetAllInfo()' style='cursor: pointer'>基本信息</a></li ><li class='text'><a style='cursor: pointer'>退出登录</a></li > ";
+                            var str = "<li class='text'><a style='cursor: pointer'> 我的订单</a></li ><li class='text'><a onclick='GetAllInfo()' style='cursor: pointer'>基本信息</a></li ><li class='text'><a onclick='GoOut()' style='cursor: pointer'>退出登录</a></li > ";
                             $("#IsLogin").append(str);
                         }
                     }
@@ -1102,6 +1105,18 @@
                     url: "/Film/GetPhoneNum",
                     success: function (data) {
                         location.href = "/Film/GetAllUserInfo?PhoneNum=" + data;
+                    }
+                })
+            }
+            function GoOut() {
+                $.ajax({
+                    url: "/Film/ClearCookie",
+                    success: function (data) {
+                        if (data==1) {
+                            $("#IsLogin").empty();
+                            var str = "<li class='text'><a style='cursor: pointer'>登录</a></li >";
+                            $("#IsLogin").append(str);
+                        }
                     }
                 })
             }

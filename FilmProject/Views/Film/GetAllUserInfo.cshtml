@@ -146,7 +146,7 @@
                                     <label for="userexinfo-form-gender-1">男</label>
                                 </span>
                                 <span>
-                                    <input type="radio" name="gender" id="userexinfo-form-gender-2" value="2" class="ui-radio">
+                                    <input type="radio" name="gender" id="userexinfo-form-gender-2" value="0" class="ui-radio">
                                     <label for="userexinfo-form-gender-2">女</label>
                                 </span>
                             </div>
@@ -154,7 +154,7 @@
                                 <p>生日：</p>
                                 <span>
                                     <div class="ui-select">
-                                        <select name="year" class="ui-select">
+                                        <select name="year" class="ui-select" id="SelYear">
                                             <option>--</option>
                                             <option value="2019">2019</option>
                                             <option value="2018">2018</option>
@@ -242,17 +242,17 @@
                                 </span>
                                 <span>
                                     <div class="ui-select">
-                                        <select name="month" class="ui-select">
+                                        <select name="month" class="ui-select" id="SelMonth">
                                             <option>--</option>
-                                            <option value="1">1</option>
-                                            <option value="2">2</option>
-                                            <option value="3">3</option>
-                                            <option value="4">4</option>
-                                            <option value="5">5</option>
-                                            <option value="6">6</option>
-                                            <option value="7">7</option>
-                                            <option value="8">8</option>
-                                            <option value="9">9</option>
+                                            <option value="01">01</option>
+                                            <option value="02">02</option>
+                                            <option value="03">03</option>
+                                            <option value="04">04</option>
+                                            <option value="05">05</option>
+                                            <option value="06">06</option>
+                                            <option value="07">07</option>
+                                            <option value="08">08</option>
+                                            <option value="09">09</option>
                                             <option value="10">10</option>
                                             <option value="11">11</option>
                                             <option value="12" selected="">12</option>
@@ -262,17 +262,17 @@
                                 </span>
                                 <span>
                                     <div class="ui-select">
-                                        <select name="day" class="ui-select">
+                                        <select name="day" class="ui-select" id="SelDay">
                                             <option>--</option>
-                                            <option value="1">1</option>
-                                            <option value="2">2</option>
-                                            <option value="3">3</option>
-                                            <option value="4">4</option>
-                                            <option value="5">5</option>
-                                            <option value="6">6</option>
-                                            <option value="7">7</option>
-                                            <option value="8">8</option>
-                                            <option value="9">9</option>
+                                            <option value="01">01</option>
+                                            <option value="02">02</option>
+                                            <option value="03">03</option>
+                                            <option value="04">04</option>
+                                            <option value="05">05</option>
+                                            <option value="06">06</option>
+                                            <option value="07">07</option>
+                                            <option value="08">08</option>
+                                            <option value="09">09</option>
                                             <option value="10">10</option>
                                             <option value="11">11</option>
                                             <option value="12">12</option>
@@ -302,7 +302,7 @@
                             </div>
                             <input type="hidden" name="csrf" value="8efd9ba00221ee263d7b2547430bae0ea634553fbb3c16d949a73a2440420861">
                             <div class="userexinfo-bottom-section clearfix">
-                                <input type="submit" class="form-save-btn" value="保存">
+                                <input type="submit" class="form-save-btn" value="保存" onclick="EditInfo()">
                                 <!-- <span id="cancell-btn" class="cancel_alert hand">注销账号1</span> -->
                             </div>
 
@@ -322,7 +322,7 @@
                     <div class="img-cropper-content">
                         <div class="img-main">
                             <div class="img-main-wrapper">
-                                <img src="https://img.meituan.net/maoyanuser/7050be720bc70eee8c86c0add2026bc87764.png">
+                                <img id="UImg" src="https://img.meituan.net/maoyanuser/7050be720bc70eee8c86c0add2026bc87764.png">
                             </div>
                         </div>
                         <div class="img-preview">
@@ -457,6 +457,31 @@
     window.onload = function () {
         GetCookie();
         getPhoneNum();
+        PaddingData();
+    }
+    function PaddingData() {
+        var phone = $("#phoneNum").val();
+        
+        $.ajax({
+            url: "http://localhost:13693/api/LoginAndFirstPage/BackDataByPhoneNum?phoneNum=" + phone,
+            type: "get",
+            dataType: "json",
+            success: function (data) {
+                $(data).each(function () {
+                    $("#userexinfo-form-nickname").val(this.UserName);
+                    if (this.UserSex == 1) {
+                        $("#userexinfo-form-gender-1").attr('checked', true);
+                    }
+                    else {
+                        $("#userexinfo-form-gender-2").attr('checked', true);
+                    }
+                    $("#SelYear").val(this.UserBirthday.substr(0, 4));
+                    $("#SelMonth").val(this.UserBirthday.substr(5, 2));
+                    $("#SelDay").val(this.UserBirthday.substr(8, 2));
+                    $("UImg").attr("src",this.UserImg)
+                })
+            }
+        })
     }
     function GetCookie() {
         $.ajax({
@@ -470,11 +495,10 @@
                     $("#IsLogin").append(str);
                 }
             }
-
         })
     }
     function getPhoneNum() {
-        var url = location.search; //获取url中"?"符后的字串   
+        var url = location.search; 
         var theRequest = new Object();
         if (url.indexOf("?") != -1) {
             var str = url.substr(1);
@@ -485,4 +509,17 @@
         }
         $("#phoneNum").val(theRequest["PhoneNum"]);
     }
+    function EditInfo() {
+        var userNae =  $("#userexinfo-form-nickname").val();
+        $("#userexinfo-form-gender-1").val();
+        $("#userexinfo-form-gender-2").val();
+        $("#SelYear").val();
+        $("#SelMonth").val();
+        $("#SelDay").val();
+        $("UImg").val();
+        $.ajax({
+            url:""
+        })
+    }
+
 </script>
