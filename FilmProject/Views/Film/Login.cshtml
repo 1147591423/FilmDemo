@@ -15,7 +15,7 @@
     <link href="~/1_flat-login-form-3-0/css/style.css" rel="stylesheet" />
 </head>
 <body>
-    <button id="code" value="3322" hidden></button>
+    <button id="code" value="@Session["value"]" hidden></button>
     <div class="pen-title">
         <h1>水墨电影</h1>
     </div>
@@ -96,6 +96,7 @@
                 success: function (data) {
                     if (data > 0) {
                         alert("注册成功！");
+                        
                     }
                     else {
                         alert("注册失败");

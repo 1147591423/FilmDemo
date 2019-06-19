@@ -155,7 +155,7 @@ namespace FilmDemo.Controllers
         }
         public int ClearCookie()
         {
-            if (cookie!=null)
+            if (cookie != null)
             {
                 cookie.Expires = DateTime.Now.AddDays(-5);
                 Response.Cookies.Add(cookie);
@@ -174,8 +174,8 @@ namespace FilmDemo.Controllers
         {
             try
             {
-                var result = GetApiResult("post", "RegisterUser",ui);
-                if (int.Parse(result) >0)
+                var result = GetApiResult("post", "RegisterUser", ui);
+                if (int.Parse(result) > 0)
                 {
                     Response.Write("<script>alert('注册成功！')</script>");
                 }
@@ -184,18 +184,19 @@ namespace FilmDemo.Controllers
                     Response.Write("<script>alert('注册失败！')</script>");
                 }
             }
-            catch 
+            catch
             {
                 Response.Write("<script>alert('注册失败！')</script>");
             }
-            
+
         }
         public ActionResult FistPage()
         {
             var result = GetApiResult("get", "GetFilm");
-            List<FilmInfo> list = JsonConvert.DeserializeObject<List<FilmInfo>>(result);
+            List<FilmInfo> list  = JsonConvert.DeserializeObject<List<FilmInfo>>(result);
             return View(list);
         }
+
         public ActionResult FilmPage()
         {
             return View();
@@ -217,7 +218,7 @@ namespace FilmDemo.Controllers
             return View();
         }
         public ActionResult GetSitAndGetTicket()
-        { 
+        {
             return View();
         }
         public ActionResult GetSit()
