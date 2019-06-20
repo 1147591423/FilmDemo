@@ -54,13 +54,11 @@ namespace FilmDemo.Controllers
         private const String path = "/dx/sendSms";
         private const String method = "POST";
         private const String appcode = "e3322da1be4944b8b8a8a73271d6c69c";
+        static Random rad = new Random();
+        int value = rad.Next(1000, 10000);
         public void MessageTest(string PhoneNum)
         {
-            //--
-
-            Random rad = new Random();
-            int value = rad.Next(1000, 10000);
-            Session["value"] = value;
+            
             String querys = "mobile=" + PhoneNum + "&param=code:" + value + "&tpl_id=TP1711063";
             String bodys = "";
             String url = host + path;
@@ -235,6 +233,7 @@ namespace FilmDemo.Controllers
         }
         public ActionResult Login()
         {
+            Session["value"] = value;
             return View();
         }
         public ActionResult GetAllUserInfo()

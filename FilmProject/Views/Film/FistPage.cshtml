@@ -81,7 +81,7 @@
             <div class="nav">
                 <ul class="navbar">
                     
-                    <li><img src="~/Content/Img/e1468264f3428ac45b1c24cab246d219.png" /></li>
+                    <li><img id="userImg" src="" /></li>
                     <li><a href="/Film/FistPage">首页</a></li>
                     <li><a href="/Film/FilmPage">电影</a></li>
                     <li><a href="/Film/CinemaPage">影院</a></li>
@@ -91,7 +91,7 @@
             <div class="user-info">
                 <div class="user-avatar J-login">
 
-                    <img src="https://p0.meituan.net/movie/7dd82a16316ab32c8359debdb04396ef2897.png">
+                    <img id="UserHeadImg" src="https://p0.meituan.net/movie/7dd82a16316ab32c8359debdb04396ef2897.png">
                     <span class="caret"></span>
                     <ul class="user-menu" id="IsLogin">
                         <li><a onclick="Logins()">登录</a></li>
@@ -227,7 +227,7 @@
                         </div>
                     </div>
                 </div>
-                <div style="height:155px"></div>
+                <div style="height:150px"></div>
                 <div class="top100-wrapper">
                     <div class="panel">
                         <div class="panel-header">
@@ -498,6 +498,9 @@
                         location.reload();
                     }
                 });
+                //var index = parent.layer.getFrameIndex(window.name);
+                //parent.layer.close(index);//关闭当前页  
+                // window.parent.location.replace(location.href)//刷新父级页面  
 
             }
             
@@ -522,11 +525,23 @@
 
                 })
             }
+
             function GetAllInfo() {
                 $.ajax({
                     url: "/Film/GetPhoneNum",
                     success: function (data) {
                         location.href = "/Film/GetAllUserInfo?PhoneNum=" + data;
+                        GetPN(data)
+                    }
+                })
+            }
+            function GetPN(data) {
+                $.ajax({
+                    url: "http://localhost:13693/api/LoginAndFirstPage/BackDataByPhoneNum?phoneNum=" + data,
+                    type: "get",
+                    dataType:"json",
+                    success: function (d) {
+                        $("#UserHeadImg").attr("src", this.UserImg);
                     }
                 })
             }

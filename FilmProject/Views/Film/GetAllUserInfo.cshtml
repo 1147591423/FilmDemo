@@ -426,6 +426,7 @@
         </p>
         <p>北京猫眼文化传媒有限公司</p>
     </div>
+    <button id="UId" hidden value=""></button>
 
     <script crossorigin="anonymous" src="//www.dpfile.com/app/owl/static/owl_1.7.11.js"></script>
     <script>
@@ -442,24 +443,13 @@
 </body>
 </html>
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>GetAllUserInfo</title>
-</head>
-<body>
-    <div>
-    </div>
-</body>
-</html>
-<script src="~/Scripts/jquery-3.3.1.js"></script>
 <script>
     window.onload = function () {
         GetCookie();
         getPhoneNum();
-        PaddingData();
+        BaddingData();
     }
-    function PaddingData() {
+    function BaddingData() {
         var phone = $("#phoneNum").val();
         
         $.ajax({
@@ -478,7 +468,8 @@
                     $("#SelYear").val(this.UserBirthday.substr(0, 4));
                     $("#SelMonth").val(this.UserBirthday.substr(5, 2));
                     $("#SelDay").val(this.UserBirthday.substr(8, 2));
-                    $("UImg").attr("src",this.UserImg)
+                    $("#UImg").attr("src",this.UserImg);
+                    $("#UId").val(this.UId);
                 })
             }
         })
@@ -510,15 +501,33 @@
         $("#phoneNum").val(theRequest["PhoneNum"]);
     }
     function EditInfo() {
-        var userNae =  $("#userexinfo-form-nickname").val();
-        $("#userexinfo-form-gender-1").val();
-        $("#userexinfo-form-gender-2").val();
-        $("#SelYear").val();
-        $("#SelMonth").val();
-        $("#SelDay").val();
-        $("UImg").val();
+        var phoneNum = $("#phoneNum").val();
+        var userName =  $("#userexinfo-form-nickname").val();
+        var bitTime = $("#SelYear").val() +"/"+ $("#SelMonth").val() +"/"+ $("#SelDay").val();
+        var sex = $("input:radio[name='gender']:checked").val();
+        var img = $("UImg").attr("src");
+        var uid = $("#UId").val();
+        Ui = {
+            UserName: userName,
+            UserSex: sex,
+            UserBirthday: bitTime,
+            UserImg: img,
+            PhoneNum: phoneNum
+        }
         $.ajax({
-            url:""
+            url: "http://localhost:13693/api/LoginAndFirstPage/EditUserInfo?ui=" + JSON.stringify(Ui),
+            type: "put",
+            dataType: "json",
+            success: function (data) {
+                if (data > 0) {
+                    alert("提交成功！");
+                    location.href = "/Film/FistPage";
+                }
+                else {
+                    alert("提交失败！");
+                }
+            }
+
         })
     }
 
