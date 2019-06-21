@@ -13,6 +13,7 @@ using FilmDemo.Models;
 using System.Diagnostics;
 using System.Net.Security;
 using System.Security.Cryptography.X509Certificates;
+using System.Globalization;
 
 namespace FilmDemo.Controllers
 {
@@ -50,15 +51,48 @@ namespace FilmDemo.Controllers
             }
             return json;
         }
+        public string GetApiResult1(string Request, string ActionName, object obj = null)
+        {
+            string json = "";
+            HttpClient hc = new HttpClient();
+            hc.BaseAddress = new Uri("http://localhost:13693/api/details/");
+            Task<HttpResponseMessage> task = null;
+            switch (Request)
+            {
+                case "get":
+                    task = hc.GetAsync(ActionName);
+                    break;
+                case "post":
+                    task = hc.PostAsJsonAsync(ActionName, obj);
+                    break;
+                case "put":
+                    task = hc.PutAsJsonAsync(ActionName, obj);
+                    break;
+                case "delete":
+                    task = hc.DeleteAsync(ActionName);
+                    break;
+            }
+            task.Wait();
+            var result = task.Result;
+            if (result.IsSuccessStatusCode)
+            {
+                var GetResultTask = result.Content.ReadAsStringAsync();
+                GetResultTask.Wait();
+                json = GetResultTask.Result;
+            }
+            return json;
+        }
         private const String host = "http://dingxin.market.alicloudapi.com";
         private const String path = "/dx/sendSms";
         private const String method = "POST";
         private const String appcode = "e3322da1be4944b8b8a8a73271d6c69c";
-        static Random rad = new Random();
-        int value = rad.Next(1000, 10000);
         public void MessageTest(string PhoneNum)
         {
-            
+            //--
+
+            Random rad = new Random();
+            int value = rad.Next(1000, 10000);
+            Session["value"] = value;
             String querys = "mobile=" + PhoneNum + "&param=code:" + value + "&tpl_id=TP1711063";
             String bodys = "";
             String url = host + path;
@@ -153,7 +187,7 @@ namespace FilmDemo.Controllers
         }
         public int ClearCookie()
         {
-            if (cookie != null)
+            if (cookie!=null)
             {
                 cookie.Expires = DateTime.Now.AddDays(-5);
                 Response.Cookies.Add(cookie);
@@ -172,8 +206,8 @@ namespace FilmDemo.Controllers
         {
             try
             {
-                var result = GetApiResult("post", "RegisterUser", ui);
-                if (int.Parse(result) > 0)
+                var result = GetApiResult("post", "RegisterUser",ui);
+                if (int.Parse(result) >0)
                 {
                     Response.Write("<script>alert('注册成功！')</script>");
                 }
@@ -182,46 +216,59 @@ namespace FilmDemo.Controllers
                     Response.Write("<script>alert('注册失败！')</script>");
                 }
             }
-            catch
+            catch 
             {
                 Response.Write("<script>alert('注册失败！')</script>");
             }
-
+            
         }
         public ActionResult FistPage()
         {
             var result = GetApiResult("get", "GetFilm");
-            List<FilmInfo> list  = JsonConvert.DeserializeObject<List<FilmInfo>>(result);
+            List<FilmInfo> list = JsonConvert.DeserializeObject<List<FilmInfo>>(result);
             return View(list);
         }
-
+        //热映
         public ActionResult FilmPage()
         {
             return View();
         }
+        //影院
         public ActionResult CinemaPage()
         {
             return View();
         }
+        //榜单
         public ActionResult ListPage()
         {
             return View();
         }
+        //影片信息
         public ActionResult FilmInfo()
         {
             return View();
         }
+
         public ActionResult GetTicket()
         {
             return View();
         }
-        public ActionResult GetSitAndGetTicket()
+        //影院信息
+        public ActionResult GetSitAndGetTicket(int CId=27)
         {
-            return View();
+            var result = GetApiResult1("get", "CinemaShow?CId=" + CId);
+            var result1 = GetApiResult1("get", "FilmImg?CId=" + CId);
+            ViewModels view = new ViewModels();
+            view.Cinemas= JsonConvert.DeserializeObject<List<CinemaList>>(result);
+            view.FilmShow = JsonConvert.DeserializeObject<List<FilmInfo>>(result1);
+            return View(view);
         }
         public ActionResult GetSit()
         {
-            return View();
+            int str = int.Parse(Request.QueryString["WId"]);
+            var result = GetApiResult1("get", "GetSitXinxi?WId="+str);
+            List<CinemaWithFilm> list = JsonConvert.DeserializeObject<List<CinemaWithFilm>>(result);
+            return View(list);
         }
         public ActionResult CfmInfo()
         {
@@ -233,12 +280,16 @@ namespace FilmDemo.Controllers
         }
         public ActionResult Login()
         {
-            Session["value"] = value;
             return View();
         }
         public ActionResult GetAllUserInfo()
         {
             return View();
         }
+    }
+    public class ViewModels
+    {
+        public List<CinemaList> Cinemas { get; set; }
+        public List<FilmInfo> FilmShow { get; set; }
     }
 }
