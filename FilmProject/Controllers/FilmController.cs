@@ -254,10 +254,10 @@ namespace FilmDemo.Controllers
             return View();
         }
         //影院信息
-        public ActionResult GetSitAndGetTicket(int CId=27,int FId=27)
+        public ActionResult GetSitAndGetTicket(int CId=27)
         {
             var result = GetApiResult1("get", "CinemaShow?CId=" + CId);
-            var result1 = GetApiResult1("get", "FilmImg?FId=" + FId);
+            var result1 = GetApiResult1("get", "FilmImg?CId=" + CId);
             ViewModels view = new ViewModels();
             view.Cinemas= JsonConvert.DeserializeObject<List<CinemaList>>(result);
             view.FilmShow = JsonConvert.DeserializeObject<List<FilmInfo>>(result1);
@@ -265,7 +265,10 @@ namespace FilmDemo.Controllers
         }
         public ActionResult GetSit()
         {
-            return View();
+            int str = int.Parse(Request.QueryString["WId"]);
+            var result = GetApiResult1("get", "GetSitXinxi?WId="+str);
+            List<CinemaWithFilm> list = JsonConvert.DeserializeObject<List<CinemaWithFilm>>(result);
+            return View(list);
         }
         public ActionResult CfmInfo()
         {
