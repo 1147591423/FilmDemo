@@ -7,19 +7,22 @@
 <head>
     <meta charset="UTF-8">
     <title>Flat Login Form 3.0</title>
-     
-      
+
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
     <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700,900|RobotoDraft:400,100,300,500,700,900'>
     <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css'>
+    <link href="~/layui-v2.5.4/layui/css/layui.css" rel="stylesheet" />
+    <script src="~/layui-v2.5.4/layui/layui.all.js"></script>
+    <script src="~/layui-v2.5.4/layui/layui.js"></script>
     <link href="~/1_flat-login-form-3-0/css/style.css" rel="stylesheet" />
 </head>
 <body>
-    <button id="code" value="3322" hidden></button>
     <div class="pen-title">
         <h1>水墨电影</h1>
     </div>
     <!-- Form Module-->
+    <input id="code" type="button" value="@Session["value"]" hidden />
     <div class="module form-module">
         <div class="toggle">
             <i class="fa fa-times fa-pencil"></i>
@@ -32,7 +35,7 @@
             {
                 <input name="PhoneNum" type="text" placeholder="手机号" />
                 <input name="Password" type="password" placeholder="密码" />
-                <button type="submit">登陆</button>
+                <button type="submit" >登陆</button>
             }
         </div>
         <div class="form">
@@ -54,6 +57,7 @@
 </html>
 <script>
     function Judge() {
+        var index = parent.layer.getFrameIndex(window.name);
         var phone = document.getElementById('Moble').value;
         var pwd = document.getElementById('pwd').value;
         var confirmPwd = document.getElementById('confirmPwd').value;
@@ -96,6 +100,7 @@
                 success: function (data) {
                     if (data > 0) {
                         alert("注册成功！");
+                        parent.layer.close(index);
                     }
                     else {
                         alert("注册失败");
@@ -104,7 +109,6 @@
             })
         }
     }
-    
     function GetGodeMassage() {
         var phone = document.getElementById('Moble').value;
         if (phone == "") {
@@ -114,7 +118,7 @@
         if (!(/^1[3456789]\d{9}$/.test(phone))) {
             alert("手机号码有误，请重填");
             return false;
-        } 
+        }
         var wait = 30;
         function time(obj) {
             if (wait == 0) {
